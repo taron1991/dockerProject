@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -24,12 +26,14 @@ public class Rest {
 
 
     @GetMapping("/getCar/{id}")
-    public Car get(@PathVariable("id") int id){
+    public Optional<Car> getCar(@PathVariable("id") int id){
+        log.info("in the get method");
         return serviceClass.findById(id);
     }
 
     @GetMapping("/hello")
-    public String get(){
+    public String hello(){
+        log.info("in the hello method");
         return "hello";
     }
 }

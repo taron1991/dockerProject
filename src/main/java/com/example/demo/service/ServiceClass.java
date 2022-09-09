@@ -5,6 +5,8 @@ import com.example.demo.repo.Db;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ServiceClass {
 
@@ -15,7 +17,7 @@ public class ServiceClass {
         this.db = db;
     }
 
-    public Car findById(int id){
-        return db.findById(id).get();
+    public Optional<Car> findById(int id){
+        return db.findById(id);
     }
 }
