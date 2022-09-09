@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  app:
+    build: ./
+    container_name: app
+    restart: always
+    ports:
+      - 8080:8081
+    depends_on:
+      - db

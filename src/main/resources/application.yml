@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: westside
+    url: jdbc:postgresql://db:5432/postgres
+
+  jpa:
+    properties:
+     hibernate:
+       dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+
+
+
+
