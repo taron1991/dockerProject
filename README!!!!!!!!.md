@@ -14,6 +14,36 @@ CMD ["java","-jar","/target/DeleteDocker-1.0-SNAPSHOT.jar"]
 # ADD - Основное различие между(COPY) ними заключается в том, что команда "ADD" также поддерживает автоматическую распаковку файлов
 # WORKDIR - раб папка
 
+добавь зависимости для указания местоположения майн класса
+
+ <build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>orgs.Hello</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+ЗАПУСК!!
+docker build -t app .
+docker run app
+
+ЗАПУСК COMPOSE!
+docker-compose build
+docker-compose up
+
 #docker build -t app . построй образ этот и ищи его (докерфайл) в текущей директории
 #docker run -p 8080:8080 app
 #!!!!!!!Port mapping (отображение портов) используется для установления связи между локальным приложением
