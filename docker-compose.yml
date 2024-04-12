@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:13
     ports:
-      - 5432:5432
+      - 4231:5432
     restart: always
     #container_name: db
     environment:
@@ -16,7 +16,7 @@ services:
     #container_name: app
     #restart: always
     ports:
-      - "8080:8080"
+      - "8081:8080"
     depends_on:
       - db
     #наш app.yml внутри контейнера
@@ -25,6 +25,10 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: westside
+
+после запуска компоус заходим в database и делаем настройку бд
+1. jdbc:postgresql://localhost:4231/postgres
+-стучаться внутрь контейнера будем через внешний порт 4231
 
 #Создаем два контейнера(наше приложение и БД)
 #у нашего app в контейнере нужен свой yml(как подключаться к БД)!самое главное указать в SPRING_DATASOURCE_URL вместо локалхоста имя сервиса БД чтобы он подключался именно к ней
